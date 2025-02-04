@@ -2,9 +2,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import "./styles.css";
+import { useState } from "react";
 
 function AuthPage({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const [input, setInput] = useState("");
 
   const navItems = [
     { name: "Register", path: "/register" },
@@ -14,6 +16,15 @@ function AuthPage({ children }: { children: React.ReactNode }) {
 
   return (
     <div>
+      <div>
+        <input
+          className="border rounded p-1"
+          type="text"
+          placeholder="enter here..."
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        />
+      </div>
       {navItems.map((item) => (
         <Link
           href={item.path}
